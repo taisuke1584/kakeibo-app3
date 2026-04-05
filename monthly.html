@@ -1,0 +1,60 @@
+<h2>月別集計</h2>
+
+<select id="month"></select>
+
+<div id="result"></div>
+
+<script>
+const url = "GASのURL"; // ←同じURL
+
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    const months = {};
+
+    // データ整理
+    data.slice(1).forEach(row => {
+      const date = row[0]; // 04/05
+      const month = date.split("/")[0]; // 04
+
+      if (!months[month]) {
+        months[month] = {
+          eating: 0,
+          utility: 0,
+          total: 0
+        };
+      }
+
+      const eating = Number(row[1]) + Number(row[2]);
+      const utility = Number(row[5]) + Number(row[6]) + Number(row[7]);
+
+      months[month].eating += eating;
+      months[month].utility += utility;
+      months[month].total += eating + utility;
+    });
+
+    // セレクト作成
+    const select = document.getElementById("month");
+
+    Object.keys(months).forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.text = m + "月";
+      select.appendChild(opt);
+    });
+
+    // 表示
+    select.addEventListener("change", () => {
+      const m = select.value;
+      const d = months[m];
+
+      document.getElementById("result").innerHTML = `
+        <p>食費: ${d.eating}円</p>
+        <p>光熱費: ${d.utility}円</p>
+        <p>合計: ${d.total}円</p>
+      `;
+    });
+
+    select.dispatchEvent(new Event("change"));
+  });
+</script>
