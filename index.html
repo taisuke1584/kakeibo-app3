@@ -3,15 +3,10 @@
 <input type="number" id="eating_out" placeholder="外食費">
 <input type="number" id="cooking" placeholder="自炊費">
 
-<button id="sendBtn" type="button">送信</button>
+<button type="button" onclick="sendData()">送信</button>
 
 <script>
-document.getElementById("sendBtn").addEventListener("click", sendData);
-
-function sendData(event) {
-  event.preventDefault();
-  e.stopPropagation();
-
+function sendData() {
   const url = "https://script.google.com/macros/s/AKfycbw0anKmiTuei1B07REUK6o24RaIMZlApoEmZOyU8z1_yORaCC-IyMPzCyFKSjprtd_AiA/exec";
 
   const eat = document.getElementById("eating_out");
