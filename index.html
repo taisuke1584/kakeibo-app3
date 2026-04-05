@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>家計簿</h2>
-
-<form action="https://script.google.com/macros/s/AKfycbxjBXz0UjQBMTai_LQdVYiHD94QAikKd0pbv_eDlemfX9kJK-LE7pyQ3A5E2XQg4l7cVg/exec" method="POST">
-  <input type="number" name="eating_out" placeholder="外食費">
-  <input type="number" name="cooking" placeholder="自炊費">
+<form action="https://script.google.com/macros/s/AKfycbxjBXz0UjQBMTai_LQdVYiHD94QAikKd0pbv_eDlemfX9kJK-LE7pyQ3A5E2XQg4l7cVg/exec" method="POST" onsubmit="setDefault()">
+  <input type="number" id="eating_out" name="eating_out" placeholder="外食費">
+  <input type="number" id="cooking" name="cooking" placeholder="自炊費">
   <button type="submit">送信</button>
 </form>
 
-</body>
-</html>
+<script>
+function setDefault() {
+  const eat = document.getElementById("eating_out");
+  const cook = document.getElementById("cooking");
+
+  if (eat.value === "") eat.value = 0;
+  if (cook.value === "") cook.value = 0;
+}
+</script>
