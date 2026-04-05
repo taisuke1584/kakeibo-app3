@@ -2,19 +2,29 @@
 
 <input type="number" id="eating_out" placeholder="外食費">
 <input type="number" id="cooking" placeholder="自炊費">
+<input type="number" id="gasoline" placeholder="ガソリン代">
+<input type="number" id="gasoline_liter" placeholder="ガソリン（リッター）">
+<input type="number" id="electric" placeholder="電気代">
+<input type="number" id="gas" placeholder="ガス代">
+<input type="number" id="water" placeholder="水道代">
+<input type="number" id="hobby_me" placeholder="趣味（自分）">
+<input type="number" id="hobby_partner" placeholder="趣味（彼女）">
 
 <button type="button" onclick="sendData()">送信</button>
-
 <script>
 function sendData() {
-  const url = "https://script.google.com/macros/s/AKfycbxhgRfxkTFn2uncx2W7YYcKwLRyCRsetBiMJRnivgYigEziv6PYhCPtmvGAn5KQlAGlvA/exec";
-
-  const eat = document.getElementById("eating_out");
-  const cook = document.getElementById("cooking");
+  const url = "https://script.google.com/macros/s/AKfycbyyjyodbxeL_XFJhtrCX54HLqAy8xsA-zlrN4uhcSFpbcqsAvrt2TV0ELWdA90UFZCf/exec";
 
   const data = {
-    eating_out: eat.value || 0,
-    cooking: cook.value || 0
+    eating_out: document.getElementById("eating_out").value || 0,
+    cooking: document.getElementById("cooking").value || 0,
+    gasoline: document.getElementById("gasoline").value || 0,
+    gasoline_liter: document.getElementById("gasoline_liter").value || 0,
+    electric: document.getElementById("electric").value || 0,
+    gas: document.getElementById("gas").value || 0,
+    water: document.getElementById("water").value || 0,
+    hobby_me: document.getElementById("hobby_me").value || 0,
+    hobby_partner: document.getElementById("hobby_partner").value || 0
   };
 
   fetch(url, {
@@ -23,8 +33,8 @@ function sendData() {
     body: JSON.stringify(data)
   });
 
-  eat.value = "";
-  cook.value = "";
+  // リセット
+  document.querySelectorAll("input").forEach(i => i.value = "");
 
   alert("送信しました");
 }
