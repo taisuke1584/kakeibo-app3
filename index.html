@@ -32,10 +32,18 @@ function sendData() {
 
 fetch(url, {
   method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
   body: JSON.stringify(data)
 })
 .then(res => res.text())
-.then(res => alert(res));
+.then(res => {
+  alert(res);
+})
+.catch(err => {
+  alert("エラー: " + err);
+});
 
   // リセット
   document.querySelectorAll("input").forEach(i => i.value = "");
