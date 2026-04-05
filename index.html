@@ -1,17 +1,32 @@
-<form action="https://script.google.com/macros/s/AKfycbxLsaI5e_xecCtS4fQv-K8WCZdxAT8sG68aEt7y4x-SwtUrOn6JxEJfMzFruNDi5SuYoA/exec" method="POST" onsubmit="return setDefault()">
-  <input type="number" id="eating_out" name="eating_out" placeholder="外食費">
-  <input type="number" id="cooking" name="cooking" placeholder="自炊費">
-  <button type="submit">送信</button>
-</form>
+<h2>家計簿</h2>
+
+<input type="number" id="eating_out" placeholder="外食費">
+<input type="number" id="cooking" placeholder="自炊費">
+
+<button onclick="sendData()">送信</button>
 
 <script>
-function setDefault() {
+function sendData() {
+  const url = "https://script.google.com/macros/s/AKfycbxTXARkzxloe-WXRaY0NvaFACxtq9Amczx3M86kCRRS8WhBupOTBuKFNPIdi81I1uIrjg/exec";
+
   const eat = document.getElementById("eating_out");
   const cook = document.getElementById("cooking");
 
-  if (eat.value === "") eat.value = 0;
-  if (cook.value === "") cook.value = 0;
+  const data = {
+    eating_out: eat.value || 0,
+    cooking: cook.value || 0
+  };
 
-  return true;
+  fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data)
+  });
+
+  // ここでリセット
+  eat.value = "";
+  cook.value = "";
+
+  alert("送信しました");
 }
 </script>
