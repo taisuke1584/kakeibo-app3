@@ -32,17 +32,8 @@ function sendData() {
 
 fetch(url, {
   method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
+  mode: "no-cors",
   body: JSON.stringify(data)
-})
-.then(res => res.text())
-.then(res => {
-  alert(res);
-})
-.catch(err => {
-  alert("エラー: " + err);
 });
 
   // リセット
