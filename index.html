@@ -3,10 +3,14 @@
 <input type="number" id="eating_out" placeholder="外食費">
 <input type="number" id="cooking" placeholder="自炊費">
 
-<button type="button" onclick="sendData()">送信</button>
+<button id="sendBtn">送信</button>
 
 <script>
-function sendData() {
+document.getElementById("sendBtn").addEventListener("click", sendData);
+
+function sendData(event) {
+  event.preventDefault();
+
   const url = "https://script.google.com/macros/s/AKfycbxTXARkzxloe-WXRaY0NvaFACxtq9Amczx3M86kCRRS8WhBupOTBuKFNPIdi81I1uIrjg/exec";
 
   const eat = document.getElementById("eating_out");
@@ -23,7 +27,6 @@ function sendData() {
     body: JSON.stringify(data)
   });
 
-  // ここでリセット
   eat.value = "";
   cook.value = "";
 
