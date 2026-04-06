@@ -52,7 +52,8 @@ fetch(url)
 
       const eating = d.eating_out + d.cooking;
       const utility = d.electric + d.gas + d.water;
-      const total = eating + utility + d.hobby_me + d.hobby_partner;
+      const hobby_total = d.hobby_me + d.hobby_partner; // ←追加
+      const total = eating + utility + hobby_total;
 
       document.getElementById("result").innerHTML = `
         <p>外食: ${d.eating_out}円</p>
@@ -66,6 +67,7 @@ fetch(url)
         <hr>
         <p>趣味（自分）: ${d.hobby_me}円</p>
         <p>趣味（彼女）: ${d.hobby_partner}円</p>
+        <p><b>趣味（合算）: ${hobby_total}円</b></p>
         <hr>
         <h3>合計: ${total}円</h3>
       `;
