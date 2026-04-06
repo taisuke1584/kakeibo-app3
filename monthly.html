@@ -53,11 +53,12 @@ fetch(url)
       const m = select.value;
       const d = months[m];
 
-      const eating = d.eating_out + d.cooking;
-      const utility = d.electric + d.gas + d.water;
-      const hobby_total = d.hobby_me + d.hobby_partner; // ←追加
+      const eating = Number(d.eating_out) + Number(d.cooking);
+      const utility = Number(d.electric) + Number(d.gas) + Number(d.water);
+      const hobby_total = Number(d.hobby_me) + Number(d.hobby_partner);
+
       const total = eating + utility + hobby_total;
-      const income = d.salary;
+      const income = Number(d.salary) || 0;
       const balance = income - total;
 
       document.getElementById("result").innerHTML = `
