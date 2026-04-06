@@ -1,17 +1,98 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: sans-serif;
+  padding: 15px;
+  max-width: 500px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+button:active {
+  background-color: #45a049;
+}
+</style>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>家計簿</title>
+
+<style>
+body {
+  font-family: sans-serif;
+  padding: 15px;
+  max-width: 500px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
 <h2>家計簿</h2>
 
-<input type="number" id="eating_out" placeholder="外食費">
-<input type="number" id="cooking" placeholder="自炊費">
-<input type="number" id="gasoline" placeholder="ガソリン代">
-<input type="number" id="gasoline_liter" placeholder="ガソリン（円/L）">
-<input type="number" id="electric" placeholder="電気代">
-<input type="number" id="gas" placeholder="ガス代">
-<input type="number" id="water" placeholder="水道代">
-<input type="number" id="hobby_me" placeholder="趣味（自分）">
-<input type="number" id="hobby_partner" placeholder="趣味（彼女）">
-<input type="number" id="salary" placeholder="給与">
+<input type="number" placeholder="外食費" id="eating_out">
+<input type="number" placeholder="自炊費" id="cooking">
+<input type="number" placeholder="ガソリン代" id="gasoline">
+<input type="number" placeholder="ガソリン（円/L）" id="gasoline_liter">
+<input type="number" placeholder="電気代" id="electric">
+<input type="number" placeholder="ガス代" id="gas">
+<input type="number" placeholder="水道代" id="water">
+<input type="number" placeholder="趣味（自分）" id="hobby_me">
+<input type="number" placeholder="趣味（彼女）" id="hobby_partner">
+<input type="number" placeholder="給与" id="salary">
 
-<button type="button" onclick="sendData()">送信</button>
+<button onclick="sendData()">送信</button>
 
 <script>
 function sendData() {
@@ -41,3 +122,6 @@ function sendData() {
   alert("送信しました");
 }
 </script>
+
+</body>
+</html>
