@@ -5,35 +5,38 @@
 <div id="result"></div>
 
 <script>
-const url = "https://script.google.com/macros/s/AKfycby9bnWA7gHDqgPzMSy1vnEuPzhyY2f_FNzrz6K2aWHE9XbrsHCprmaBf-huubWvncd8aA/exec"; // ←同じURL
+const url = "https://script.google.com/macros/s/AKfycby9bnWA7gHDqgPzMSy1vnEuPzhyY2f_FNzrz6K2aWHE9XbrsHCprmaBf-huubWvncd8aA/exec";
 
 fetch(url)
   .then(res => res.json())
   .then(data => {
     const months = {};
 
-    // データ整理
     data.slice(1).forEach(row => {
-      const date = row[0]; // 04/05
-      const month = date.split("/")[0]; // 04
+      const date = row[0];
+      const month = date.split("/")[0];
 
       if (!months[month]) {
         months[month] = {
-          eating: 0,
-          utility: 0,
-          total: 0
+          eating_out: 0,
+          cooking: 0,
+          electric: 0,
+          gas: 0,
+          water: 0,
+          hobby_me: 0,
+          hobby_partner: 0
         };
       }
 
-      const eating = Number(row[1]) + Number(row[2]);
-      const utility = Number(row[5]) + Number(row[6]) + Number(row[7]);
-
-      months[month].eating += eating;
-      months[month].utility += utility;
-      months[month].total += eating + utility;
+      months[month].eating_out += Number(row[1]) || 0;
+      months[month].cooking += Number(row[2]) || 0;
+      months[month].electric += Number(row[5]) || 0;
+      months[month].gas += Number(row[6]) || 0;
+      months[month].water += Number(row[7]) || 0;
+      months[month].hobby_me += Number(row[8]) || 0;
+      months[month].hobby_partner += Number(row[9]) || 0;
     });
 
-    // セレクト作成
     const select = document.getElementById("month");
 
     Object.keys(months).forEach(m => {
@@ -43,15 +46,28 @@ fetch(url)
       select.appendChild(opt);
     });
 
-    // 表示
     select.addEventListener("change", () => {
       const m = select.value;
       const d = months[m];
 
+      const eating = d.eating_out + d.cooking;
+      const utility = d.electric + d.gas + d.water;
+      const total = eating + utility + d.hobby_me + d.hobby_partner;
+
       document.getElementById("result").innerHTML = `
-        <p>食費: ${d.eating}円</p>
-        <p>光熱費: ${d.utility}円</p>
-        <p>合計: ${d.total}円</p>
+        <p>外食: ${d.eating_out}円</p>
+        <p>自炊: ${d.cooking}円</p>
+        <p><b>食費: ${eating}円</b></p>
+        <hr>
+        <p>電気: ${d.electric}円</p>
+        <p>ガス: ${d.gas}円</p>
+        <p>水道: ${d.water}円</p>
+        <p><b>光熱費: ${utility}円</b></p>
+        <hr>
+        <p>趣味（自分）: ${d.hobby_me}円</p>
+        <p>趣味（彼女）: ${d.hobby_partner}円</p>
+        <hr>
+        <h3>合計: ${total}円</h3>
       `;
     });
 
