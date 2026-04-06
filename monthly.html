@@ -3,7 +3,7 @@
 <select id="month"></select>
 
 <div id="result"></div>
-salary: 0
+
 
 <script>
 const url = "https://script.google.com/macros/s/AKfycbzKHsxbEnKuwEmo4yYHxPBi-VB3LyDqAatyFJAZE7rYl8WTcB6kD_W5py-Nhiv5GsiwFw/exec";
@@ -28,7 +28,7 @@ fetch(url)
           hobby_partner: 0
         };
       }
-
+      salary: 0
       months[month].eating_out += Number(row[1]) || 0;
       months[month].cooking += Number(row[2]) || 0;
       months[month].electric += Number(row[5]) || 0;
