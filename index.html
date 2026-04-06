@@ -9,11 +9,12 @@
 <input type="number" id="water" placeholder="水道代">
 <input type="number" id="hobby_me" placeholder="趣味（自分）">
 <input type="number" id="hobby_partner" placeholder="趣味（彼女）">
+<input type="number" id="salary" placeholder="給与">
 
 <button type="button" onclick="sendData()">送信</button>
 <script>
 function sendData() {
-  const url = "https://script.google.com/macros/s/AKfycby9bnWA7gHDqgPzMSy1vnEuPzhyY2f_FNzrz6K2aWHE9XbrsHCprmaBf-huubWvncd8aA/exec";
+  const url = "https://script.google.com/macros/s/AKfycbxN0jknW9HB83oiMrsFg83WLQ8J9eqfMjnnfNtdClzd9lqbmCeFdaLl-rjshX1SzY4KpQ/exec";
 
 　const eat = document.getElementById("eating_out");
   const cook = document.getElementById("cooking");
@@ -28,6 +29,7 @@ function sendData() {
     water: document.getElementById("water").value || 0,
     hobby_me: document.getElementById("hobby_me").value || 0,
     hobby_partner: document.getElementById("hobby_partner").value || 0
+    salary: document.getElementById("salary").value || 0
   };
 
 fetch(url, {
