@@ -37,7 +37,7 @@ fetch(url)
       months[month].water += Number(row[7]) || 0;
       months[month].hobby_me += Number(row[8]) || 0;
       months[month].hobby_partner += Number(row[9]) || 0;
-      months[month].salary += Number(row[10] || 0);
+      months[month].salary += Number(row[10]) || 0;
     });
 
     const select = document.getElementById("month");
