@@ -57,7 +57,7 @@ fetch(url)
       const utility = d.electric + d.gas + d.water;
       const hobby_total = d.hobby_me + d.hobby_partner; // ←追加
       const total = eating + utility + hobby_total;
-      const income = d.salary;
+      const income = Number(d.salary) || 0;
       const balance = income - total;
 
       document.getElementById("result").innerHTML = `
