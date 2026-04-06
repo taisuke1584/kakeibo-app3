@@ -5,7 +5,8 @@
 <div id="result"></div>
 
 <script>
-const url = "https://script.google.com/macros/s/AKfycby9bnWA7gHDqgPzMSy1vnEuPzhyY2f_FNzrz6K2aWHE9XbrsHCprmaBf-huubWvncd8aA/exec";
+salary: 0
+const url = "https://script.google.com/macros/s/AKfycbxN0jknW9HB83oiMrsFg83WLQ8J9eqfMjnnfNtdClzd9lqbmCeFdaLl-rjshX1SzY4KpQ/exec";
 
 fetch(url)
   .then(res => res.json())
@@ -35,6 +36,7 @@ fetch(url)
       months[month].water += Number(row[7]) || 0;
       months[month].hobby_me += Number(row[8]) || 0;
       months[month].hobby_partner += Number(row[9]) || 0;
+      months[month].salary += Number(row[10]) || 0;
     });
 
     const select = document.getElementById("month");
@@ -54,6 +56,8 @@ fetch(url)
       const utility = d.electric + d.gas + d.water;
       const hobby_total = d.hobby_me + d.hobby_partner; // ←追加
       const total = eating + utility + hobby_total;
+      const income = d.salary;
+      const balance = income - total;
 
       document.getElementById("result").innerHTML = `
         <p>外食: ${d.eating_out}円</p>
@@ -70,6 +74,9 @@ fetch(url)
         <p><b>趣味（合算）: ${hobby_total}円</b></p>
         <hr>
         <h3>合計: ${total}円</h3>
+        <hr>
+        <p><b>給与: ${income}円</b></p>
+        <p><b>収支: ${balance}円</b></p>
       `;
     });
 
