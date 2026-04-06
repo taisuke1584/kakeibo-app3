@@ -37,7 +37,7 @@ fetch(url)
       months[month].water += Number(row[7]) || 0;
       months[month].hobby_me += Number(row[8]) || 0;
       months[month].hobby_partner += Number(row[9]) || 0;
-      months[month].salary += Number(row[10]) || 0;
+      months[month].salary += Number(row[10] || 0);
     });
 
     const select = document.getElementById("month");
@@ -57,7 +57,7 @@ fetch(url)
       const utility = d.electric + d.gas + d.water;
       const hobby_total = d.hobby_me + d.hobby_partner; // ←追加
       const total = eating + utility + hobby_total;
-      const income = Number(d.salary) || 0;
+      const income = d.salary;
       const balance = income - total;
 
       document.getElementById("result").innerHTML = `
