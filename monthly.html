@@ -14,9 +14,10 @@ fetch(url)
     const months = {};
 
     data.slice(1).forEach(row => {
-      const date = row[0];
-      const month = date.split("/")[0];
-
+      const date = new Date(row[0]);
+      const month = date.getMonth() + 1;
+      opt.text = month + "月";
+      
       if (!months[month]) {
         months[month] = {
           eating_out: 0,
