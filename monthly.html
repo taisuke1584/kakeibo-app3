@@ -16,7 +16,6 @@ fetch(url)
     data.slice(1).forEach(row => {
       const date = new Date(row[0]);
       const month = date.getMonth() + 1;
-      opt.text = month + "月";
       
       if (!months[month]) {
         months[month] = {
