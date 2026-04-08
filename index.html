@@ -80,9 +80,6 @@ button {
 <body>
 
 <h2>家計簿</h2>
-<a href="monthly.html">
-  <button>月別を見る</button>
-</a>
 
 <input type="number" placeholder="外食費" id="eating_out">
 <input type="number" placeholder="自炊費" id="cooking">
@@ -96,7 +93,11 @@ button {
 <input type="number" placeholder="給与" id="salary">
 
 <button onclick="sendData()">送信</button>
-
+  
+<a href="monthly.html">
+  <button>月別を見る</button>
+</a>
+  
 <script>
 function sendData() {
   const url = "https://script.google.com/macros/s/AKfycbzKHsxbEnKuwEmo4yYHxPBi-VB3LyDqAatyFJAZE7rYl8WTcB6kD_W5py-Nhiv5GsiwFw/exec";
