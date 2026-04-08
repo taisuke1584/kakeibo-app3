@@ -1,14 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>月別集計</title>
+
+<style>
+body {
+  font-family: sans-serif;
+  padding: 15px;
+  max-width: 500px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+}
+
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.nav a {
+  flex: 1;
+}
+
+.card {
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+</style>
+</head>
+
 <body>
-<div style="display:flex; gap:10px; margin-bottom:15px;">
-  <a href="index.html"><button style="flex:1;">入力</button></a>
+
+<div class="nav">
+  <a href="index.html"><button>入力</button></a>
+  <a href="monthly.html"><button>月別</button></a>
 </div>
+
 <h2>月別集計</h2>
-</body>
 
 <select id="month"></select>
 
 <div id="result"></div>
-
 
 <script>
 const url = "https://script.google.com/macros/s/AKfycbzKHsxbEnKuwEmo4yYHxPBi-VB3LyDqAatyFJAZE7rYl8WTcB6kD_W5py-Nhiv5GsiwFw/exec";
@@ -67,6 +123,7 @@ fetch(url)
       const balance = income - total;
 
       document.getElementById("result").innerHTML = `
+        <div class="card">
         <p>外食: ${d.eating_out}円</p>
         <p>自炊: ${d.cooking}円</p>
         <p><b>食費: ${eating}円</b></p>
@@ -84,9 +141,13 @@ fetch(url)
         <hr>
         <p><b>給与: ${income}円</b></p>
         <p><b>収支: ${balance}円</b></p>
+        </div>
       `;
     });
 
     select.dispatchEvent(new Event("change"));
   });
 </script>
+
+</body>
+</html>
